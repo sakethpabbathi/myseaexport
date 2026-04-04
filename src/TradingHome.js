@@ -477,7 +477,7 @@ const ImportExportSection = () => {
           <div style={styles.importExportCard}>
             <div style={styles.imageWrapper}>
               <img
-  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s"
+  src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
   style={styles.importExportImg}
   onClick={() => {
     setActiveSlide(6);   // 👈 new slide
@@ -506,7 +506,7 @@ const ImportExportSection = () => {
           <div style={styles.importExportCard}>
             <div style={styles.imageWrapper}>
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s"
+                src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
                 style={styles.importExportImg}
                 onClick={() => {
                   setActiveSlide(2);
@@ -524,7 +524,7 @@ const ImportExportSection = () => {
           <div style={styles.importExportCard}>
             <div style={styles.imageWrapper}>
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s"
+                src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
                 style={styles.importExportImg}
                 onClick={() => {
                   setActiveSlide(3);
@@ -550,8 +550,8 @@ const ImportExportSection = () => {
       <p>High-quality starter feed for early-stage prawns.</p>
       <h4>TOP ONE</h4>
       <div style={styles.imageRow}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
+        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
+       <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
       </div>
     </Accordion>
 
@@ -562,19 +562,19 @@ const ImportExportSection = () => {
     <Accordion title="Vannamei Feed">
       <h4>UNIVANA-P</h4>
       <div style={styles.imageRow}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
+        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
       </div>
 
       <h4>UNIVANA</h4>
       <div style={styles.imageRow}>
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
+       <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
       </div>
     </Accordion>
 
     <Accordion title="Tiger Feed">
       <h4>LA ONE</h4>
       <div style={styles.imageRow}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
+        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
       </div>
     </Accordion>
 
@@ -588,13 +588,13 @@ const ImportExportSection = () => {
       <div style={styles.scrollCard}>
         <h4>Marian Fish Feed</h4>
         <p>Premium nutrition for fish growth</p>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
+        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
       </div>
 
       <div style={styles.scrollCard}>
         <h4>Fresh Water Fish Feed</h4>
         <p>Balanced feed for freshwater systems</p>
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s" style={styles.feedImg}/>
+       <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
       </div>
     </div>
 
