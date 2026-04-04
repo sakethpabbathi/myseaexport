@@ -406,17 +406,43 @@ const Accordion = ({ title, children }) => {
   return (
     <div style={accordionStyles.container}>
       <div
-        style={accordionStyles.header}
+        style={{
+          ...accordionStyles.header,
+          background: open ? "#00b4d8" : "#f1f5f9",
+          color: open ? "#fff" : "#0d1b2a",
+        }}
         onClick={() => setOpen(!open)}
       >
-        <h3>{title}</h3>
-        <span>{open ? "−" : "+"}</span>
+        <span>{title}</span>
+        <span style={{ fontSize: "20px" }}>
+          {open ? "−" : "+"}
+        </span>
       </div>
 
-      {open && <div style={accordionStyles.content}>{children}</div>}
+      {open && (
+        <div style={accordionStyles.content}>
+          {children}
+        </div>
+      )}
     </div>
   );
 };
+
+const ItemRow = ({ title, desc, img }) => {
+  return (
+    <div style={styles.itemRow}>
+      <img src={img} style={styles.itemImg} alt={title} />
+
+      <div>
+        <h4 style={{ margin: 0 }}>{title}</h4>
+        <p style={{ margin: 0, fontSize: "14px", color: "#555" }}>
+          {desc}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const ImportExportSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [path, setPath] = useState(["Imports & Exports"]);
@@ -502,6 +528,7 @@ const ImportExportSection = () => {
             zIndex: activeSlide === 1 ? 2 : 1,
           }}
         >
+            
           {/* FEED */}
           <div style={styles.importExportCard}>
             <div style={styles.imageWrapper}>
@@ -539,7 +566,17 @@ const ImportExportSection = () => {
           </div>
         </div>
 {/* ---------------- FEED PAGE ---------------- */}
-<div style={{ ...styles.slide, transform: activeSlide === 2 ? "translateX(0%)" : "translateX(100%)" }}>
+{/* ---------------- FEED PAGE ---------------- */}
+<div
+  style={{
+    ...styles.slide,
+    transform: activeSlide === 2 ? "translateX(0%)" : "translateX(100%)",
+    overflowY: "auto",   // ✅ ADD THIS
+    height: "100%",      // ✅ ADD THIS
+    padding: "10px",     // ✅ ADD THIS
+    scrollBehavior: "smooth"
+  }}
+>
 
   <h2 style={styles.sectionTitle}>Feed</h2>
 
@@ -547,35 +584,40 @@ const ImportExportSection = () => {
   <Accordion title="Prawn Feed">
 
     <Accordion title="Nursery Feed">
-      <p>High-quality starter feed for early-stage prawns.</p>
-      <h4>TOP ONE</h4>
-      <div style={styles.imageRow}>
-        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-       <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-      </div>
+      <ItemRow
+        title="TOP ONE"
+        desc="Starter feed for early-stage prawns"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
     </Accordion>
 
     <Accordion title="Grower Feed">
-      <p>Optimized growth nutrition for prawns.</p>
+      <ItemRow
+        title="Grower Feed"
+        desc="Optimized growth nutrition"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
     </Accordion>
 
     <Accordion title="Vannamei Feed">
-      <h4>UNIVANA-P</h4>
-      <div style={styles.imageRow}>
-        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-      </div>
-
-      <h4>UNIVANA</h4>
-      <div style={styles.imageRow}>
-       <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-      </div>
+      <ItemRow
+        title="UNIVANA-P"
+        desc="High performance shrimp feed"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
+      <ItemRow
+        title="UNIVANA"
+        desc="Balanced nutrition for vannamei"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
     </Accordion>
 
     <Accordion title="Tiger Feed">
-      <h4>LA ONE</h4>
-      <div style={styles.imageRow}>
-        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-      </div>
+      <ItemRow
+        title="LA ONE"
+        desc="Premium tiger prawn feed"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
     </Accordion>
 
   </Accordion>
@@ -585,17 +627,17 @@ const ImportExportSection = () => {
   <Accordion title="Fish Feed">
 
     <div style={styles.horizontalScroll}>
-      <div style={styles.scrollCard}>
-        <h4>Marian Fish Feed</h4>
-        <p>Premium nutrition for fish growth</p>
-        <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-      </div>
+      <ItemRow
+        title="Marian Fish Feed"
+        desc="Premium fish nutrition"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
 
-      <div style={styles.scrollCard}>
-        <h4>Fresh Water Fish Feed</h4>
-        <p>Balanced feed for freshwater systems</p>
-       <img src="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg" style={styles.feedImg}/>
-      </div>
+      <ItemRow
+        title="Fresh Water Fish Feed"
+        desc="Balanced freshwater feed"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
     </div>
 
   </Accordion>
@@ -604,7 +646,17 @@ const ImportExportSection = () => {
 
 
 {/* ---------------- HCP PAGE ---------------- */}
-<div style={{ ...styles.slide, transform: activeSlide === 3 ? "translateX(0%)" : "translateX(100%)" }}>
+{/* ---------------- HCP PAGE ---------------- */}
+<div
+  style={{
+    ...styles.slide,
+    transform: activeSlide === 3 ? "translateX(0%)" : "translateX(100%)",
+    overflowY: "auto",   // ✅ ADD THIS
+    height: "100%",      // ✅ ADD THIS
+    padding: "10px",     // ✅ ADD THIS
+    scrollBehavior: "smooth"
+  }}
+>
 
   <h2 style={styles.sectionTitle}>HCP Products</h2>
 
@@ -614,42 +666,51 @@ const ImportExportSection = () => {
       "SAPONIN","HC-BIO","LIFE-HC","PREMIX-SUPER C","MAX C",
       "YUCA HONG","DE-NO2","GOLD-DINE","UNI-BKC","DEHP"
     ].map((item, i) => (
-      <div key={i} style={styles.productCard}>
-        <h4>{item}</h4>
-        <p>Aquaculture solution product</p>
-      </div>
+      <ItemRow
+        key={i}
+        title={item}
+        desc="Aquaculture solution product"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
     ))}
   </div>
 
 </div>
-
 {/* ---------------- SLIDE 7 (EXPORTS) ---------------- */}
+{/* ---------------- EXPORTS PAGE ---------------- */}
 {/* ---------------- EXPORTS PAGE ---------------- */}
 <div style={{ ...styles.slide, transform: activeSlide === 6 ? "translateX(0%)" : "translateX(100%)" }}>
 
   <h2 style={styles.sectionTitle}>Exports</h2>
 
   <Accordion title="Shrimp">
-    <p>Different shrimp varieties (Coming soon with images)</p>
+    <ItemRow
+      title="Shrimp Varieties"
+      desc="Different shrimp types (coming soon)"
+      img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+    />
   </Accordion>
 
   <Accordion title="Minerals">
-    <ul>
-      <li>Quartz</li>
-      <li>Iron Ore</li>
-      <li>Bauxite</li>
-      <li>Mica</li>
-      <li>Feldspar</li>
-      <li>Mica-Quartz</li>
-    </ul>
+    {["Quartz","Iron Ore","Bauxite","Mica","Feldspar","Mica-Quartz"].map((m,i)=>(
+      <ItemRow
+        key={i}
+        title={m}
+        desc="Export quality mineral"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
+    ))}
   </Accordion>
 
   <Accordion title="Chemicals">
-    <p>Currently available:</p>
-    <ul>
-      <li>CaCl₂</li>
-      <li>MgCl₂</li>
-    </ul>
+    {["CaCl₂","MgCl₂"].map((c,i)=>(
+      <ItemRow
+        key={i}
+        title={c}
+        desc="Industrial chemical export"
+        img="https://5.imimg.com/data5/GF/CU/MY-2050439/white-prawn-shrimp-500x500.jpg"
+      />
+    ))}
   </Accordion>
 
 </div>
@@ -831,31 +892,66 @@ const Footer = () => {
 
 const accordionStyles = {
   container: {
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    marginBottom: "10px",
+    border: "1px solid #e5e7eb",
+    borderRadius: "12px",
+    marginBottom: "15px",
     overflow: "hidden",
-    background: "#fff",
+    background: "#ffffff",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+    transition: "0.3s",
   },
 
   header: {
-    padding: "12px 15px",
-    background: "#f1f1f1",
+    padding: "14px 18px",
+    background: "#f8fafc",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     cursor: "pointer",
-    fontWeight: "bold",
+    fontWeight: "600",
+    fontSize: "15px",
+    color: "#0d1b2a",
   },
 
   content: {
-    padding: "15px",
-    background: "#fafafa",
+    padding: "18px",
+    background: "#ffffff",
+    lineHeight: "1.6",
+    color: "#444",
   },
 };
+
+
+
 const styles = {
 
+itemRow: {
+  display: "flex",
+  alignItems: "center",
+  gap: "15px",
+  padding: "10px",
+  borderBottom: "1px solid #eee",
+},
 
+itemImg: {
+  width: "60px",
+  height: "60px",
+  objectFit: "cover",
+  borderRadius: "8px",
+},
+
+horizontalScroll: {
+  display: "flex",
+  gap: "15px",
+  overflowX: "auto",
+  padding: "10px 0",
+},
+
+gridWrap: {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
+  gap: "15px",
+},
 
     
   contactSection: {
@@ -918,7 +1014,7 @@ sliderTrack: {
 sliderWrapper: {
   position: "relative",
   overflow: "hidden",
-  height: "350px",
+  height: "70vh",   // ✅ IMPORTANT (makes scroll work)
 },
 // slide: {
 //   position: "absolute",
