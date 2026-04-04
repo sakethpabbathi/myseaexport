@@ -732,49 +732,81 @@ const AboutSection = () => {
 
 
 const ContactSection = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const email = form.email.value;
+    const message = form.message.value;
+
+    // ✅ Proper encoding (important)
+    const text = encodeURIComponent(
+      `Hello, I have a new enquiry:
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Message: ${message}`
+    );
+
+    const whatsappNumber = "919347719244";
+
+    // ✅ User confirmation (prevents phishing warning)
+    const confirmSend = window.confirm("Open WhatsApp to send message?");
+
+    if (confirmSend) {
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${text}`;
+    }
+
+    form.reset();
+  };
+
   return (
     <section id="contact" style={styles.contactSection}>
       <h2 style={styles.sectionTitle}>Contact Us</h2>
 
-      <form
-        style={styles.contactForm}
-        onSubmit={(e) => {
-          e.preventDefault();
+      <form style={styles.contactForm} onSubmit={handleSubmit}>
+        
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          style={styles.input}
+          required
+        />
 
-          const name = e.target[0].value;
-          const phone = e.target[1].value;
-          const email = e.target[2].value;
-          const message = e.target[3].value;
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Mobile Number"
+          style={styles.input}
+          required
+        />
 
-          const text = `Hello, I have a new enquiry:%0A
-Name: ${name}%0A
-Phone: ${phone}%0A
-Email: ${email}%0A
-Message: ${message}`;
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          style={styles.input}
+        />
 
-          const whatsappNumber = "919347719244";
-
-          window.open(
-            `https://wa.me/${whatsappNumber}?text=${text}`,
-            "_blank"
-          );
-
-          e.target.reset();
-        }}
-      >
-        <input type="text" placeholder="Your Name" style={styles.input} required />
-        <input type="tel" placeholder="Mobile Number" style={styles.input} required />
-        <input type="email" placeholder="Email Address" style={styles.input} />
-        <textarea placeholder="Your Message" rows="4" style={styles.textarea}></textarea>
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows="4"
+          style={styles.textarea}
+        ></textarea>
 
         <button type="submit" style={styles.submitBtn}>
           Send Message
         </button>
+
       </form>
     </section>
   );
 };
-
 const Footer = () => {
   return (
     <footer id="contact" style={styles.footer}>
