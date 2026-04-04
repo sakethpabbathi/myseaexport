@@ -1,4 +1,6 @@
 
+
+
 body{
   background: rgb(252, 253, 254);
 
@@ -71,7 +73,32 @@ html {
   align-items: center;
   justify-content: center;
 }
+/* Add these to your App.css if not already present */
 
+#imports-exports {
+    overflow-x: hidden; /* Prevents horizontal scroll during transitions */
+}
+
+.importExportCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.importExportCard img:hover {
+    transform: scale(1.1);
+}
+
+/* Ensure the breadcrumb is responsive */
+@media (max-width: 768px) {
+    #imports-exports h2 {
+        font-size: 22px;
+    }
+    
+    .sliderWrapper {
+        height: auto !important;
+        min-height: 500px;
+    }
+}
 
 .services-overlay {
   background: rgba(0, 0, 0, 0.6);

@@ -1,46 +1,15 @@
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-// import ExportsPage from "./ExportsPage";
-// import FeedPage from "./FeedPage";
-// import HCPPage from "./HCPPage";
-// import ImportsPage from "./ImportsPage";
-// import React from "react";
-// import TradingHome from "./TradingHome";
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<TradingHome />} />
-//         <Route path="/imports" element={<ImportsPage />} />
-//         <Route path="/feed" element={<FeedPage />} />
-//         <Route path="/hcp" element={<HCPPage />} />
-//         <Route path="/exports" element={<ExportsPage />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import ExportsPage from "./ExportsPage";
-import FeedPage from "./FeedPage";
-import HCPPage from "./HCPPage";
-import ImportsPage from "./ImportsPage";
+import HomePage from "./HomePage";
+import ImportsExportsPage from "./Imports-ExportsPage";
 import React from "react";
-import TradingHome from "./TradingHome";
 
 function App() {
   return (
-    <BrowserRouter basename="/myseaexport"> {/* ✅ IMPORTANT */}
+    <BrowserRouter basename="/myseaexport">
       <Routes>
-        <Route path="/" element={<TradingHome />} />
-        <Route path="/imports" element={<ImportsPage />} />
-        <Route path="/feed" element={<FeedPage />} />
-        <Route path="/hcp" element={<HCPPage />} />
-        <Route path="/exports" element={<ExportsPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/imports-exports" element={<ImportsExportsPage />} />
       </Routes>
     </BrowserRouter>
   );
