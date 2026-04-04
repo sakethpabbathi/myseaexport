@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/myseaexport/static/css/main.f5d58c46.css",
+    "main.js": "/myseaexport/static/js/main.f5fdb09f.js",
+    "index.html": "/myseaexport/index.html",
+    "main.f5d58c46.css.map": "/myseaexport/static/css/main.f5d58c46.css.map",
+    "main.f5fdb09f.js.map": "/myseaexport/static/js/main.f5fdb09f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5d58c46.css",
+    "static/js/main.f5fdb09f.js"
+  ]
+}
