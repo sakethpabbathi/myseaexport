@@ -18,7 +18,7 @@ const TradingHome = () => {
         setActiveSlide={setActiveSlide} 
       />
       <AboutSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
       <Footer />
     </div>
   );
@@ -168,11 +168,12 @@ const ImportExportSection = () => {
       <div style={styles.gridContainer}>
         <div style={styles.importExportCard} onClick={handleImportClick}>
           <div style={styles.imageWrapper}>
+            
             <img
-              src="https://static.vecteezy.com/system/resources/thumbnails/020/173/239/small/global-business-logistics-transport-import-export-and-international-trade-concept-logistics-distribution-of-containers-cargo-freight-ship-train-truck-and-plane-transportation-industry-background-photo.jpg"
-              style={styles.importExportImg}
-              alt="Imports"
-            />
+  src={process.env.PUBLIC_URL + "/fishone.jpg"}
+  style={styles.importExportImg}
+  alt="Imports"
+/>
           </div>
           <div style={styles.cardContent}>
             <h3>Imports</h3>
@@ -183,7 +184,7 @@ const ImportExportSection = () => {
         <div style={styles.importExportCard} onClick={handleExportClick}>
           <div style={styles.imageWrapper}>
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s"
+             src={process.env.PUBLIC_URL + "/fishone.jpg"}
               style={styles.importExportImg}
               alt="Exports"
             />
@@ -211,37 +212,37 @@ const AboutSection = () => {
   );
 };
 
-const ContactSection = () => {
-  return (
-    <section id="contact" style={styles.contactSection}>
-      <h2 style={styles.sectionTitle}>Contact Us</h2>
-      <form
-        style={styles.contactForm}
-        onSubmit={(e) => {
-          e.preventDefault();
-          const whatsappNumber = "919347719244";
-          window.open(`https://wa.me/${whatsappNumber}?text=Enquiry`, "_blank");
-        }}
-      >
-        <input type="text" placeholder="Your Name" style={styles.input} required />
-        <input type="tel" placeholder="Mobile Number" style={styles.input} required />
-        <textarea placeholder="Your Message" rows="4" style={styles.textarea}></textarea>
-        <button type="submit" style={styles.submitBtn}>Send Message</button>
-      </form>
-    </section>
-  );
-};
+const ContactSection = () => (
+  <section id="contact" style={styles.contactSection}>
+    <h2 style={styles.sectionTitle}>Contact Us</h2>
+
+    <form style={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
+      <input type="text" placeholder="Your Name" style={styles.input} required />
+      <input type="tel" placeholder="Mobile Number" style={styles.input} required />
+      <textarea placeholder="Your Message" rows="4" style={styles.textarea}></textarea>
+
+      <button type="submit" style={styles.submitBtn}>
+        Submit
+      </button>
+    </form>
+
+    <p style={{ marginTop: "15px", color: "#555" }}>
+      We will contact you soon.
+    </p>
+  </section>
+);
+
 
 const Footer = () => (
   <footer style={styles.footer}>
     <div style={styles.footerTop}>
         <span>UPIN TRADING CORPORATION</span>
         <span>📍 Hyderabad, India</span>
-        <span>📧 upintrad@123.com</span>
-        <span>📞 +91 93477 19244</span>
+        {/* <span>📧 upintrad@123.com</span>
+        <span>📞 +91 93477 19244</span> */}
       </div>
       <p style={styles.footerBottom}>
-        © 2026 UPIN Trading Corporation. All Rights Reserved.
+        © 2026 UPIN Tradeing Corporation. All Rights Reserved.
       </p>
   </footer>
 );

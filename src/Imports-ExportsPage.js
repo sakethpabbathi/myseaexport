@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+// Update this line below:
 
 // --- NAVBAR COMPONENT ---
 const Navbar = ({ setActiveSlide, setPath }) => {
@@ -14,41 +15,62 @@ const Navbar = ({ setActiveSlide, setPath }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleNavClick = (target, slideIndex = null, breadcrumb = null) => {
-    setMenuOpen(false);
+  // const handleNavClick = (target, slideIndex = null, breadcrumb = null) => {
+  //   setMenuOpen(false);
 
-    if (window.location.pathname === "/imports-exports" && slideIndex !== null) {
-      setActiveSlide(slideIndex);
-      if (breadcrumb) setPath(breadcrumb);
-      return;
-    }
-
-    if (slideIndex !== null) {
-      navigate("/imports-exports");
-      setTimeout(() => {
-        if (setActiveSlide) setActiveSlide(slideIndex);
-        if (breadcrumb && setPath) setPath(breadcrumb);
-      }, 100);
-    } else {
-      navigate("/");
-      setTimeout(() => {
-        const element = document.getElementById(target);
-        if (element) element.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    }
-  };
+  //   if (window.location.pathname === "/imports-exports" && slideIndex !== null) {
+  //     setActiveSlide(slideIndex);
+  //     if (breadcrumb) setPath(breadcrumb);
+  //     return;
+  //   }
+                 
+  //   if (slideIndex !== null) {
+  //     navigate("/imports-exports");
+  //     setTimeout(() => {
+  //       if (setActiveSlide) setActiveSlide(slideIndex);
+  //       if (breadcrumb && setPath) setPath(breadcrumb);
+  //     }, 100);
+  //   } else {
+  //     navigate("/");
+  //     setTimeout(() => {
+  //       const element = document.getElementById(target);
+  //       if (element) element.scrollIntoView({ behavior: "smooth" });
+  //     }, 100);
+  //   }
+  // };
 
   // Helper to handle the hover state for inline styles
+  
+  const handleNavClick = (target, slideIndex = null, breadcrumb = null) => {
+  setMenuOpen(false);
+
+  if (slideIndex !== null) {
+    // Navigate to Imports/Exports page with state
+    navigate("/imports-exports", { state: { slideIndex, breadcrumb } });
+  } else {
+    // Navigate to homepage with scroll target
+    navigate("/", { state: { scrollTo: target } });
+  }
+};
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const navItems = [
+  // const navItems = [
+  //   { label: "Home", target: "home" },
+  //   { label: "Import", target: "imports-exports", slide: 1, path: ["Imports"] },
+  //   { label: "Export", target: "imports-exports", slide: 6, path: ["Exports"] },
+  //   { label: "About us", target: "about" },
+  //   { label: "Contact", target: "contact" },
+  // ];
+
+const navItems = [
     { label: "Home", target: "home" },
-    { label: "Import", target: "imports-exports", slide: 1, path: ["Imports"] },
-    { label: "Export", target: "imports-exports", slide: 6, path: ["Exports"] },
+    // Changed these to target sections on the Homepage
+    { label: "Import", target: "imports-exports" }, 
+    { label: "Export", target: "imports-exports" }, 
     { label: "About us", target: "about" },
     { label: "Contact", target: "contact" },
   ];
-
+  
   return (
     <header style={navStyles.header}>
       <div style={navStyles.headerInner}>
@@ -95,11 +117,51 @@ const Navbar = ({ setActiveSlide, setPath }) => {
 };
 
 // --- MAIN PAGE COMPONENT ---
+// const ImportsExportsPage = () => {
+//   const [activeSlide, setActiveSlide] = useState(0);
+//   const [path, setPath] = useState(["Imports & Exports"]);
+//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+//   useEffect(() => {
+//     const handleResize = () => setIsMobile(window.innerWidth <= 768);
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const handleBreadcrumbClick = (index) => {
+//     const newPath = path.slice(0, index + 1);
+//     setPath(newPath);
+//     if (newPath.length === 1) setActiveSlide(0); 
+//     if (newPath.length === 2) {
+//       if (newPath[0] === "Imports") setActiveSlide(1);
+//       if (newPath[0] === "Exports") setActiveSlide(6);
+//     }
+//   };
+
+
 const ImportsExportsPage = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [path, setPath] = useState(["Imports & Exports"]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+  const location = useLocation(); // Hook to access navigation state
 
+  // 1. Listen for navigation state changes (from Navbar)
+  useEffect(() => {
+    if (location.state) {
+      const { slideIndex, breadcrumb } = location.state;
+      
+      if (slideIndex !== undefined) {
+        setActiveSlide(slideIndex);
+      }
+      
+      if (breadcrumb) {
+        setPath(breadcrumb);
+      }
+    }
+  }, [location]); // Triggers whenever the URL or state changes
+
+  // 2. Handle Resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
@@ -115,6 +177,8 @@ const ImportsExportsPage = () => {
       if (newPath[0] === "Exports") setActiveSlide(6);
     }
   };
+
+  // ... (rest of your getSlideStyle and JSX remain the same)
 
   const getSlideStyle = (index) => {
     const isActive = activeSlide === index;
@@ -135,8 +199,9 @@ const ImportsExportsPage = () => {
     };
   };
 
-  const commonImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75hzrt-cwrOqmIMGXWOP3aNi4RQSfHgesVA&s";
-
+  
+// Local image from public folder
+const commonImg = process.env.PUBLIC_URL + "/fishone.jpg";
   return (
     <div style={localStyles.app}>
       <Navbar setActiveSlide={setActiveSlide} setPath={setPath} />
@@ -264,11 +329,11 @@ const Footer = () => {
       <div style={styles.footerTop}>
         <span>UPIN TRADING CORPORATION</span>
         <span>📍 Hyderabad, India</span>
-        <span>📧 upintrad@123.com</span>
-        <span>📞 +91 93477 19244</span>
+        {/* <span>📧 upintrad@123.com</span>
+        <span>📞 +91 93477 19244</span> */}
       </div>
       <p style={styles.footerBottom}>
-        © 2026 UPIN Trading Corporation. All Rights Reserved.
+        © 2026 UPIN Tradeing Corporation. All Rights Reserved.
       </p>
     </footer>
   );
@@ -359,69 +424,6 @@ const styles = {
     opacity: 0.8,
   },
 };
-
-// const localStyles = {
-//   app: {
-//     fontFamily: "Arial, sans-serif",
-//     background: "#f9fafc",
-//     paddingTop: "70px",
-//     minHeight: "100vh",
-//     overflowX: "hidden",
-//   },
-//   importExportSection: {
-//     padding: "50px 20px",
-//     textAlign: "center",
-//   },
-//   sectionTitle: {
-//     fontSize: "2rem",
-//     marginBottom: "30px",
-//     color: "#0d1b2a",
-//     fontWeight: "bold",
-//   },
-//   sliderWrapper: {
-//     position: "relative",
-//     width: "100%",
-//     overflow: "visible",
-//   },
-//   slide: {
-//     position: "absolute",
-//     width: "100%",
-//     display: "flex",
-//     justifyContent: "center",
-//     gap: "40px",
-//     transition: "transform 0.6s ease, opacity 0.6s ease",
-//     flexWrap: "wrap",
-//     top: 0,
-//     left: 0,
-//   },
-//   importExportCard: {
-//     width: "100%",
-//     maxWidth: "320px",
-//     borderRadius: "15px",
-//     overflow: "hidden",
-//     background: "#fff",
-//     boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-//     transition: "0.4s",
-//     cursor: "pointer",
-//     flex: "1 1 280px",
-//     margin: "10px",
-//   },
-//   imageWrapper: {
-//     position: "relative",
-//     height: "200px",
-//     overflow: "hidden",
-//   },
-//   importExportImg: {
-//     width: "100%",
-//     height: "100%",
-//     objectFit: "cover",
-//     transition: "0.5s",
-//   },
-//   cardContent: {
-//     padding: "20px",
-//     textAlign: "center",
-//   },
-// };
 
 
 const localStyles = {
