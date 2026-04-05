@@ -241,7 +241,7 @@ const Footer = () => (
         <span>📞 +91 93477 19244</span>
       </div>
       <p style={styles.footerBottom}>
-        © 2026 UPIN Tradeing Corporation. All Rights Reserved.
+        © 2026 UPIN Trading Corporation. All Rights Reserved.
       </p>
   </footer>
 );
