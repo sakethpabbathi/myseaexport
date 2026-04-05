@@ -376,15 +376,6 @@ footerBottom: {
   fontSize: "12px",
   opacity: 0.8,
 },
-  // footer: { 
-  //   // Strong dark blue to anchor the site
-  //   background: "linear-gradient(180deg, #03045e 0%, #023e8a 100%)", 
-  //   color: "#caf0f8", 
-  //   padding: "40px 20px", 
-  //   textAlign: "center" 
-  // },
-  // footerTop: { display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap", marginBottom: "20px" },
-  // footerBottom: { marginTop: "20px", opacity: 0.5, fontSize: "12px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "15px" },
   
 };
 
